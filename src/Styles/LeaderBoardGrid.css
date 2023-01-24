@@ -1,0 +1,6 @@
+.LeaderBoardGrid {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 100%;
+    transition: 2s;
+}
