@@ -8,6 +8,8 @@ The user can select like or dislike on a photo of a rig and the result will be s
 Tracking concepts and skills that are utilized:
 * useState
 * useContext for lifting state
+* .map() for rendering multiple elements
 * conditionally ordering grid elements
 * sorting algorithm based on number of likes
-* 
+* styling for viewport scaling
+* onClick handling
