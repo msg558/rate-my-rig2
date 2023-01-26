@@ -4,10 +4,17 @@ import { Photo } from './components/Photo';
 import { LeaderBoard } from './components/LeaderBoard';
 import { useState, useContext} from 'react';
 import { Context1 } from './contexts/Context1';
+import { useSelector, useDispatch} from 'react-redux'
 
 const numPhotos = 5
 
 function App() {
+
+  // REDUX STUFF
+  const xx = useSelector((state: any) => state)
+  console.log(xx.value)
+  // --------------
+
 
   const [photoPath, setPhotoPath] = useState(1)
   const [likes, setLikes] = useState(new Array(numPhotos).fill(0))
@@ -26,6 +33,9 @@ function App() {
     setLikes(temp)
   }
 
+  const dispatch = useDispatch()
+
+
   return (    
       <div className='App'>
         <h1 className='Heading'>Rate-My-Rig!</h1>
@@ -38,7 +48,9 @@ function App() {
           <button className = 'btn btn-success' onClick={() => onLikeHandler(photoPath, likes, true)} > Like </button>
           <button className = 'btn btn-danger' onClick={() => onLikeHandler(photoPath, likes, false)}> Dislike </button>
         </div>
-      
+        <button className='btn btn-primary btn-small' onClick={() => dispatch({type: 'counter/incremented'})}> Increment Redux State</button>
+        <button className='btn btn-primary btn-small' onClick={() => dispatch({type: 'counter/decremented'})}> Decrement Redux State</button>
+        <div> {xx.value} </div>
       </div>
   );
 }
