@@ -1,7 +1,7 @@
 # Rate-My-Rig
 A simple demonstration app that I have used to incorporate skills that I have obtained while learning React with Typescript. 
 
-* Rate-My-Rig is now hosted on http://matt-gips-myapp3/rigs/App !!!
+* Rate-My-Rig is now hosted on http://matt-gips-myapp3.herokuapp.com/rigs/App !!!
 
 ** Now supports multiple clients. All instances of this app will connect to the same remote API that serves the latest data and allows for new likes to be added to the database. Each client automatically connects to this API and updates the Likes state based on the API response every 2 seconds. 
 
