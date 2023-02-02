@@ -2,7 +2,7 @@ import './Styles/Lux.css'
 import './App.css'
 import { Photo } from './components/Photo';
 import { LeaderBoard } from './components/LeaderBoard';
-import { useState, useContext} from 'react';
+import { useState, useContext, useEffect} from 'react';
 import { Context1 } from './contexts/Context1';
 import { useSelector, useDispatch} from 'react-redux'
 
@@ -12,13 +12,41 @@ function App() {
 
   // REDUX STUFF
   const xx = useSelector((state: any) => state)
-  console.log(xx.value)
   // --------------
 
-
   const [photoPath, setPhotoPath] = useState(1)
+
+  const updateLikes = () => {
+    console.log('fetching data and updating state')
+    fetch('http://matt-gips-myapp3.herokuapp.com/rigs/').then((response) => response.json()).then((data)=>transformData(data))
+
+  }
+  
+  useEffect(()=> {
+    updateLikes()
+    const interval = setInterval(updateLikes,2000)
+    return (() => clearInterval(interval))
+  },[])
+
+
+  const transformData = (data: any) => {
+    const cutData = data.map((item:any)=> [item.path , item.likes])
+    const tempArray = new Array(cutData.length)
+    cutData.forEach((element: any)=> {
+       tempArray[element[0]-1]=element[1]
+    })
+    setLikes(tempArray)
+  }
+
+  const addLike = (path: number) => { 
+    fetch('http://matt-gips-myapp3.herokuapp.com/rigs/'+path.toString()+'/addLike').then((response) => response.json()).then((data)=>transformData(data));
+  }
+
   const [likes, setLikes] = useState(new Array(numPhotos).fill(0))
   const onLikeHandler = (path: number, likes: number[], liked: boolean) => {
+    if (liked) {
+      addLike(path)
+    }
     setPhotoPath((prev) => {
       if (prev>(numPhotos-1)){
         prev=0
@@ -26,15 +54,11 @@ function App() {
       return(prev+1)
     })
     
-    const temp = likes
-    if (liked) {
-      temp[path-1]++
-    }
-    setLikes(temp)
   }
 
   const dispatch = useDispatch()
 
+  
 
   return (    
       <div className='App'>
