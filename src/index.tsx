@@ -4,15 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { createStore } from '@reduxjs/toolkit';
-import {rootReducer} from './reducers/rootReducer'
+import { createStore, applyMiddleware } from '@reduxjs/toolkit';
+import {likesReducer} from './reducers/LikesReducer'
+import createSagaMiddleware from 'redux-saga'
+import {watcherSaga} from './sagas/rootSaga'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 
-const store = createStore(rootReducer)
+
+const sagaMiddleware = createSagaMiddleware()
+const store = createStore(likesReducer, undefined, applyMiddleware(sagaMiddleware))
+sagaMiddleware.run(watcherSaga)
+
 root.render(
   <Provider store = {store}>
     <React.StrictMode>
