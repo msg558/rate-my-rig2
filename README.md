@@ -3,15 +3,16 @@ A simple demonstration app that I have used to incorporate skills that I have ob
 
 * Rate-My-Rig is now hosted on http://matt-gips-myapp3.herokuapp.com/rigs/App !!!
 
-** Now supports multiple clients. All instances of this app will connect to the same remote API that serves the latest data and allows for new likes to be added to the database. Each client automatically connects to this API and updates the Likes state based on the API response every 2 seconds. 
+** Now supports multiple clients. All instances of this app will connect to the same remote API that serves the latest data and allows for new likes to be added to the database. Each client automatically connects to this API and updates the Likes state based on the API response every 5 seconds. 
 
 The user can select like or dislike on a photo of a rig and the result will be stored and the leaderboard automatically updated, and then a new photo will be displayed. Additionally, the user can click on an icon in the leaderboard to swap the main display to that photo.
 
 ![alt text](https://github.com/msg558/rate-my-rig2/blob/main/public/Photos/RMR.jpg?raw=true)
 
 Tracking concepts and skills that are utilized:
+* Redux store for holding global state data
+* Redux saga for handling API requests
 * useEffect for initial data fetch and fetch setInterval for auto-updates
-* fetch API for updating state and adding new likes to remote database
 * Ruby-on-Rails app to act as API hosted on heroku: http://matt-gips-myapp3.herokuapp.com/rigs returns JSON of postgres table
 * useState
 * useContext for lifting state
