@@ -1,4 +1,3 @@
-import * as types from '../Types'
 
 export const requestGetLikes = () => {
     return(fetch('http://matt-gips-myapp3.herokuapp.com/rigs').then((response) => response.json()))

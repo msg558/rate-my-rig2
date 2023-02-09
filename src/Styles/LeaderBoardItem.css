@@ -1,26 +1,26 @@
 .LeaderBoardItem {
-    width: auto;
-    height: 90%;
-    padding: 2%;
+    padding: 0.5%;
     font-size: 1.5vh;
     transition: 1s;
     opacity: 100%;
-    
+    text-align: left;
+
 }
 
 .LeaderBoardItemGrid {
+    height: 100%;
+    width: 100%;
     display: grid;
-    grid-template-columns: 30% 70%;
-    grid-template-rows: auto;
-    
-    
+    grid-template-columns: 30% auto;
+
 }
 
 .img-icon {
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     object-fit: fill;
     border-radius: 1vh;
+    padding: 1px;
 }
 
 .img-icon:hover {
@@ -30,11 +30,11 @@
 }
 
 .iconContainer {
-    width: 100%;
-    max-width: 100%;
+    width: 90%;
     aspect-ratio: 1/1;
 }
 
 .progressContainer {
     width: 100%;
+    padding: 4px;
 }

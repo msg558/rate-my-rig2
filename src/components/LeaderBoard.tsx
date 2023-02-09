@@ -1,10 +1,12 @@
 import '../Styles/LeaderBoard.css'
 import '../Styles/LeaderBoardGrid.css'
 import { LeaderBoardItem } from './LeaderBoardItem'
-import { useState } from 'react'
+import { Map } from './Map';
+import '../Styles/Map.css'
 
 type propsType= {
-    likes: number[]
+    likes: number[],
+    setPhotoPath: Function
 }
 
 const calculateOrder = (array: number[]) => {
@@ -26,16 +28,16 @@ const calculateOrder = (array: number[]) => {
 
 export const LeaderBoard = (props: propsType) => {
     const totalLikes = props.likes.reduce((a,b) => a+b, 0)
-    const [order, setOrder] = useState([1,2,3])
 
-    console.log('LeaderBoard Component Rendered')
     return(
         <div className='LeaderBoard'>
-            <h3>Leaderboard</h3>
             <div className='LeaderBoardGrid' >
                 {props.likes.map((x,i, A) => {
                     return(<LeaderBoardItem path={i+1} key={i+1} order={calculateOrder(A)[i]} progress={x} totalLikes={totalLikes}/>)
                 })}          
+            </div>
+            <div className='map-container'>
+                <Map onClickFunc={props.setPhotoPath}></Map> 
             </div>
         </div>
         

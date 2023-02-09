@@ -7,6 +7,8 @@ import { useState, useEffect} from 'react';
 import { Context1 } from './contexts/Context1';
 import { useSelector, useDispatch} from 'react-redux'
 
+
+
 const numPhotos = 5
 
 function App() {
@@ -18,7 +20,6 @@ function App() {
 
   
   const [photoPath, setPhotoPath] = useState(1)
- 
 
   
   useEffect(()=> {
@@ -26,7 +27,7 @@ function App() {
     const interval = setInterval(()=>dispatch({type: 'GET_LIKES'}),5000)
     return (() => clearInterval(interval))
 
-  },[])
+  },[dispatch])
 
 
   const transformData = (data: types.APIDataType[]) => {
@@ -54,20 +55,24 @@ function App() {
   }
 
 
-  console.log('App component rendered')
+
   return (    
+    <div>
       <div className='App'>
         <h1 className='Heading'>Rate-My-Rig!</h1>
         <Photo path={photoPath} />
         <Context1.Provider value={{value: photoPath, setValue: setPhotoPath}}>
-          <LeaderBoard likes={transformData(ReduxState)}/>
+          <LeaderBoard likes={transformData(ReduxState)} setPhotoPath={setPhotoPath}/>
         </Context1.Provider>
 
         <div className='Controls'>
-          <button className = 'btn btn-success' onClick={() => onLikeHandler(photoPath, true)} > Like </button>
+          <button className = 'btn btn-success' onClick={() => onLikeHandler(photoPath, true)}> Like </button>
           <button className = 'btn btn-danger' onClick={() => onLikeHandler(photoPath, false)}> Dislike </button>
         </div>
+         
       </div>
+    
+    </div>
   );
 }
 

@@ -11,7 +11,7 @@ type propsType = {
 }
 
 const calculatePercent = (progress: number, totallikes: number) => {
-    if (totallikes==0) {
+    if (totallikes===0) {
         return 0
     }
     else {
@@ -35,11 +35,11 @@ export const LeaderBoardItem = (props: propsType) => {
         <div className='LeaderBoardItem' style={style} >
             <div className='LeaderBoardItemGrid' >
                 <div className='iconContainer' >
-                    <img src={'Photos/'+props.path+'.jpg'} className='img-icon' onClick={clickHandler} />
+                    <img src={'Photos/'+props.path+'.jpg'} alt='' className='img-icon' onClick={clickHandler} />
                 </div>
                 <div className='progressContainer'>
                     <div> {'Rig # '+props.path.toString()} </div>
-                    <ProgressBar now={calculatePercent(props.progress, props.totalLikes)} animated color='red'/>
+                    <ProgressBar now={calculatePercent(props.progress, props.totalLikes)} animated variant='success'/>
                     <div style={{textAlign: 'left'}}> {props.progress} Likes </div>
                     
                 </div>

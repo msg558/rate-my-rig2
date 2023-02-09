@@ -1,6 +1,5 @@
 import {call, put} from "redux-saga/effects"
 import { requestGetLikes, requestAddLikes } from "./requests"
-import * as types from '../Types'
 
 export function* handleGetLikes(action: any): Generator {
     try {

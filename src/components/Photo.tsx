@@ -10,7 +10,7 @@ export const Photo = (props: propsType) => {
         <div>
             <div className='Photo'> 
                 <div></div>
-                <img src={'Photos/'+props.path+'.jpg'} alt='alternate text' className='img'></img>
+                <img src={'Photos/'+props.path+'.jpg'} alt='' className='img'></img>
             </div>
         </div>
     )
