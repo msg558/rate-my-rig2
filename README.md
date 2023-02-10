@@ -3,6 +3,8 @@ A simple demonstration app that I have used to incorporate skills that I have ob
 
 * Rate-My-Rig is now hosted on http://matt-gips-myapp3.herokuapp.com/rigs/App !!!
 
+(2/9/2023) Added a Mapbox GL map below the leaderboard that shows geographic location of rigs. Hovering over the marker will show the photo and clicking will update the photo component to the clicked rig. 
+
 ** Now supports multiple clients. All instances of this app will connect to the same remote API that serves the latest data and allows for new likes to be added to the database. Each client automatically connects to this API and updates the Likes state based on the API response every 5 seconds. 
 
 The user can select like or dislike on a photo of a rig and the result will be stored and the leaderboard automatically updated, and then a new photo will be displayed. Additionally, the user can click on an icon in the leaderboard to swap the main display to that photo.
