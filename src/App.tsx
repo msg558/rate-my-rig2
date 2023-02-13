@@ -15,6 +15,7 @@ function App() {
   
   // REDUX STUFF
   const ReduxState = useSelector((state: types.APIDataType[]) => state)
+  
   const dispatch = useDispatch()
   // --------------
 

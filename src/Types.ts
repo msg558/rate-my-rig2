@@ -3,7 +3,9 @@ export type APIDataType = {
         created_at: string,
         updated_at: string,
         likes: number,
-        path: string       
+        path: string,
+        longitude: number,
+        latitude: number,
     }
 
 

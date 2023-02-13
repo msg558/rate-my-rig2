@@ -11,6 +11,7 @@
 	color: black;
 	position: relative;
 	z-index: -1;
+	transition: 2s;
 }
 
 .blob:hover {

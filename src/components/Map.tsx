@@ -1,6 +1,8 @@
 import ReactMapGL from 'react-map-gl'
 import { useState } from 'react'
 import { MapMarker } from './MapMarker'
+import { useSelector} from 'react-redux'
+import * as types from '../Types'
 
 type propsType = {
     onClickFunc: Function
@@ -23,7 +25,7 @@ export const Map = (props: propsType) => {
         zoom: 5
         
     })
-    
+    const ReduxState = useSelector((state: types.APIDataType[]) => state)
 
     return(
         <ReactMapGL 
@@ -33,12 +35,11 @@ export const Map = (props: propsType) => {
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} 
         mapStyle="mapbox://styles/mapbox/dark-v9"
         >
+            {ReduxState.map((rig) => {
+                return(<MapMarker longitude={rig.longitude? rig.longitude : 0} latitude={rig.latitude? rig.latitude : 0} onClick={props.onClickFunc} path={+rig.path} key={rig.path}/>)
+            })}
             
-            <MapMarker longitude={-99.2} latitude={30}onClick={props.onClickFunc} path={1}/>
-            <MapMarker longitude={-98.3} latitude={30.5}onClick={props.onClickFunc} path={2}/>
-            <MapMarker longitude={-99.6} latitude={31}onClick={props.onClickFunc} path={3}/>
-            <MapMarker longitude={-98.6} latitude={31.5}onClick={props.onClickFunc} path={4}/>
-            <MapMarker longitude={-99} latitude={32}onClick={props.onClickFunc} path={5}/>
+
         </ReactMapGL>
     )
 }
