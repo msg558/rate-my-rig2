@@ -6,7 +6,8 @@ import '../Styles/Map.css'
 
 type propsType= {
     likes: number[],
-    setPhotoPath: Function
+    setPhotoPath: Function,
+    photoPath: number
 }
 
 const calculateOrder = (array: number[]) => {
@@ -37,7 +38,7 @@ export const LeaderBoard = (props: propsType) => {
                 })}          
             </div>
             <div className='map-container'>
-                <Map onClickFunc={props.setPhotoPath}></Map> 
+                <Map onClickFunc={props.setPhotoPath} photoPath={props.photoPath}></Map>
             </div>
         </div>
         

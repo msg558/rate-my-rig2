@@ -1,8 +1,9 @@
 .LeaderBoardGrid {
     height: 65%;
     display: grid;
-    grid-template-rows: 20% 20% 20% 20% 20%;
+    grid-template-rows: auto;
     grid-template-columns: auto;
     transition: 2s;
+    overflow: auto;
 
 }

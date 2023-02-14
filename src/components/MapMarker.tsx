@@ -10,6 +10,9 @@ type propsType = {
     description?: string,
     onClick: Function
     path: number,
+    crewSize: number,
+    wellsDrilled: number,
+    selected: boolean
 }
 
 
@@ -29,9 +32,15 @@ export const MapMarker = (props: propsType) => {
 
     return (
         <Marker longitude={props.longitude} latitude={props.latitude} onClick={()=>props.onClick(props.path)} >
-            <div className='blob' onMouseOver={MO_Handler} onMouseLeave={ML_Handler}> {props.path} </div>
-            {popupVisible && <Popup longitude={props.longitude} latitude={props.latitude} anchor="bottom-left" style={{color: 'black'}} closeButton={false}>
+            <div className={props.selected? 'blob-selected' : 'blob' } onMouseOver={MO_Handler} onMouseLeave={ML_Handler}> {props.path} </div>
+            {popupVisible && <Popup className= 'popup' longitude={props.longitude} latitude={props.latitude} closeButton={false}>
+                <div style={{textAlign: 'center'}}> Rig #: {props.path}</div>
                 <img src={'Photos/'+props.path+'.jpg'} alt='' style={{width: '70px', height: '70px'}} />
+                <div>Longitude: {props.longitude}</div>
+                <div>Latitude: {props.latitude}</div>
+                <div>Crew Size: {props.crewSize} </div>
+                <div>Wells Drilled: {props.wellsDrilled}</div>
+                
                 </Popup>}
         </Marker>
             

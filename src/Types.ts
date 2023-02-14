@@ -6,6 +6,21 @@ export type APIDataType = {
         path: string,
         longitude: number,
         latitude: number,
+        num_wells_drilled: number,
+        crew_size: number,
+
     }
 
+export type NewRigParams = {
+    path: string,
+    longitude: number,
+    latitude: number,
+    crew_size: number,
+    num_wells_drilled: number
+}
+
+export type reduxState = {
+    Likes: APIDataType[]
+    Login: boolean
+}
 

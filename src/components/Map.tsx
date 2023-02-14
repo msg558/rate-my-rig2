@@ -6,6 +6,7 @@ import * as types from '../Types'
 
 type propsType = {
     onClickFunc: Function
+    photoPath: number
 }
 
 const style = {
@@ -13,7 +14,7 @@ const style = {
     height: '99%', 
     borderTop: 'solid', 
     borderColor: 'white',
-    overflow: 'visible',
+    overflow: 'hidden',
     margin: 0,
 }
 
@@ -21,11 +22,11 @@ export const Map = (props: propsType) => {
     const [viewport, setViewport] = useState({
     
         longitude: -99,
-        latitude: 31, 
+        latitude: 29.5, 
         zoom: 5
         
     })
-    const ReduxState = useSelector((state: types.APIDataType[]) => state)
+    const ReduxState = useSelector((state: types.reduxState) => state.Likes)
 
     return(
         <ReactMapGL 
@@ -36,7 +37,16 @@ export const Map = (props: propsType) => {
         mapStyle="mapbox://styles/mapbox/dark-v9"
         >
             {ReduxState.map((rig) => {
-                return(<MapMarker longitude={rig.longitude? rig.longitude : 0} latitude={rig.latitude? rig.latitude : 0} onClick={props.onClickFunc} path={+rig.path} key={rig.path}/>)
+                return(<MapMarker 
+                        longitude={rig.longitude}
+                        latitude={rig.latitude}
+                        crewSize={rig.crew_size}
+                        wellsDrilled={rig.num_wells_drilled}
+                        onClick={props.onClickFunc} 
+                        path={+rig.path} 
+                        key={rig.path}
+                        selected = {(props.photoPath===+rig.path)? true : false}
+                    />)
             })}
             
 

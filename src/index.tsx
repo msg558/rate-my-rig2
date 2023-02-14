@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from '@reduxjs/toolkit';
-import {likesReducer} from './reducers/LikesReducer'
+import {rootReducer} from './reducers/rootReducer'
 import createSagaMiddleware from 'redux-saga'
 import {watcherSaga} from './sagas/rootSaga'
 
@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(
 
 
 const sagaMiddleware = createSagaMiddleware()
-const store = createStore(likesReducer, undefined, applyMiddleware(sagaMiddleware))
+const store = createStore(rootReducer, undefined, applyMiddleware(sagaMiddleware))
 sagaMiddleware.run(watcherSaga)
 
 root.render(

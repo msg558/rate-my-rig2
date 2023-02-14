@@ -35,18 +35,6 @@
   background-color: #4d4d4d00;
 }
 
-.popup {
-  width: 200px;
-  height: 100px;
-  position: absolute;
-  top: -90px;
-  right: -190px;
-  color: black;
-  background-color: rgba(255, 255, 255, 0.849);
-  padding: 2px;
-  border-radius: 20px;
-  backdrop-filter: blur(2px);
-}
 
 *{
   box-sizing: border-box;
