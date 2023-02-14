@@ -3,12 +3,24 @@ import '../Styles/LeaderBoardGrid.css'
 import { LeaderBoardItem } from './LeaderBoardItem'
 import { Map } from './Map';
 import '../Styles/Map.css'
+import * as types from '../Types'
+import { useSelector} from 'react-redux'
 
 type propsType= {
-    likes: number[],
     setPhotoPath: Function,
     photoPath: number
 }
+
+
+const transformData = (data: types.APIDataType[]) => {
+    const cutData = data.map((item)=> [item.path , item.likes])
+    const tempArray = new Array(cutData.length)
+    cutData.forEach((element)=> {
+       tempArray[+element[0]-1]=element[1]
+    })
+    return tempArray
+  }
+
 
 const calculateOrder = (array: number[]) => {
     return( 
@@ -28,12 +40,15 @@ const calculateOrder = (array: number[]) => {
 }
 
 export const LeaderBoard = (props: propsType) => {
-    const totalLikes = props.likes.reduce((a,b) => a+b, 0)
+
+    const ReduxState = useSelector((state: types.reduxState) => state.Likes)
+    const Likes = transformData(ReduxState)
+    const totalLikes = Likes.reduce((a,b) => a+b, 0)
 
     return(
         <div className='LeaderBoard'>
             <div className='LeaderBoardGrid' >
-                {props.likes.map((x,i, A) => {
+                {Likes.map((x,i, A) => {
                     return(<LeaderBoardItem path={i+1} key={i+1} order={calculateOrder(A)[i]} progress={x} totalLikes={totalLikes}/>)
                 })}          
             </div>
