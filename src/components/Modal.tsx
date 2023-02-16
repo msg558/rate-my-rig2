@@ -1,6 +1,6 @@
 import '../Styles/Modal.css'
 import { FormItem } from './FormItem'
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 type propsType = {
@@ -8,11 +8,12 @@ type propsType = {
     setVisible: Function
     title: string
     dispatchType?: string
-    itemArray: {
+    itemArray?: {
         label: string
         objKey: string
         isNumber?: boolean
     }[]
+    children?: ReactNode
 }
 
 export const Modal = (props: propsType) => {
@@ -28,17 +29,18 @@ export const Modal = (props: propsType) => {
     
     return(
         <div className='custom-modal' style={{display: props.visible? 'block' : 'none'}}>
-            <h2 style={{padding: '5vh'}}> {props.title} </h2>
-            
+            <h2 style={{padding: '2vh'}}> {props.title} </h2>
+            {props.children}
+            {props.itemArray && 
             <form style={{width: '60%',margin: 'auto', textAlign: 'center'}}>
 
                 {props.itemArray.map((item) => 
                     <FormItem label={item.label} key={item.objKey} setState={setState} objKey={item.objKey} isNumber={item.isNumber} /> 
                 )}
                 
-            </form>
-            <div style={{paddingTop: '10vh'}}>
-                <button className='btn btn-primary' onClick={submitHandler}> Submit </button>
+            </form> }
+            <div>
+                {props.dispatchType && <button className='btn btn-primary' onClick={submitHandler}> Submit </button> }
                 <button className='btn btn-warning' onClick={()=>props.setVisible(false)}> Cancel</button>
             </div>
         </div>

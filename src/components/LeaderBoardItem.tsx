@@ -8,7 +8,10 @@ type propsType = {
     order: number
     progress: number
     totalLikes: number
+    selected: boolean
 }
+
+
 
 const calculatePercent = (progress: number, totallikes: number) => {
     if (totallikes===0) {
@@ -20,7 +23,7 @@ const calculatePercent = (progress: number, totallikes: number) => {
 }
 
 export const LeaderBoardItem = (props: propsType) => {
-    
+    const isSelected = props.selected? 'selected' : ''
     const contextObj = useContext(Context1)
     const style = {
         gridColumn: '1',
@@ -32,7 +35,7 @@ export const LeaderBoardItem = (props: propsType) => {
     }
 
     return(
-        <div className='LeaderBoardItem' style={style} >
+        <div className={'LeaderBoardItem '+isSelected} style={style} >
             <div className='LeaderBoardItemGrid' >
                 <div className='iconContainer' >
                     <img src={'Photos/'+props.path+'.jpg'} alt='' className='img-icon' onClick={clickHandler} />

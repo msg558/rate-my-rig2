@@ -5,8 +5,9 @@ import { useSelector} from 'react-redux'
 import * as types from '../Types'
 
 type propsType = {
-    onClickFunc: Function
-    photoPath: number
+    onClickFunc: Function,
+    photoPath: number,
+    token: string | undefined
 }
 
 const style = {
@@ -33,7 +34,7 @@ export const Map = (props: propsType) => {
         style= {style}
         {...viewport} 
         onMove={(vp)=>setViewport(vp.viewState)} 
-        mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} 
+        mapboxAccessToken={props.token} 
         mapStyle="mapbox://styles/mapbox/dark-v9"
         >
             {ReduxState.map((rig) => {

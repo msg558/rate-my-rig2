@@ -7,6 +7,7 @@ import { useState, useEffect} from 'react';
 import { Context1 } from './contexts/Context1';
 import { useDispatch} from 'react-redux'
 import { Modal } from './components/Modal';
+import { Map } from './components/Map';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
 
   const [photoPath, setPhotoPath] = useState(1)
   const [modal1Visible, setModal1Visible] = useState(false)
+  const [modal2Visible, setModal2Visible] = useState(false)
 
   useEffect(()=> {
     dispatch({type: 'GET_LIKES'})
@@ -40,12 +42,20 @@ function App() {
         <Photo path={photoPath} />
         <Context1.Provider value={{value: photoPath, setValue: setPhotoPath}}>
           <LeaderBoard setPhotoPath={setPhotoPath} photoPath={photoPath}/>
+          <button className='btn' onClick={() => setModal2Visible(true)}> Enlarge Map </button>
         </Context1.Provider>
-
         <Controls setPhotoPath={setPhotoPath} photoPath={photoPath} setModalVisible={setModal1Visible}/>
 
       </div>
       <Modal visible={modal1Visible} title='Add New Rig' setVisible={setModal1Visible} itemArray={formItemArray} dispatchType={'ADD_RIG'}></Modal>
+      {modal2Visible && 
+        <Modal visible={true} title='RIG MAP' setVisible={setModal2Visible}>
+          <div style={{width: "100%", height: '70vh'}}>
+            <Map onClickFunc={setPhotoPath} photoPath={photoPath} token={process.env.REACT_APP_MAPBOX_TOKEN2}></Map>
+          </div>
+      </Modal>}
+      
+      
     </div>
   );
 }

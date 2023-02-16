@@ -49,11 +49,19 @@ export const LeaderBoard = (props: propsType) => {
         <div className='LeaderBoard'>
             <div className='LeaderBoardGrid' >
                 {Likes.map((x,i, A) => {
-                    return(<LeaderBoardItem path={i+1} key={i+1} order={calculateOrder(A)[i]} progress={x} totalLikes={totalLikes}/>)
+                    return(
+                    <LeaderBoardItem 
+                        path={i+1} 
+                        key={i+1} 
+                        order={calculateOrder(A)[i]} 
+                        progress={x} 
+                        totalLikes={totalLikes}
+                        selected={(i+1===props.photoPath)? true : false}
+                        />)
                 })}          
             </div>
             <div className='map-container'>
-                <Map onClickFunc={props.setPhotoPath} photoPath={props.photoPath}></Map>
+                <Map onClickFunc={props.setPhotoPath} photoPath={props.photoPath} token={process.env.REACT_APP_MAPBOX_TOKEN}></Map>
             </div>
         </div>
         
